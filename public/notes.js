@@ -35,9 +35,9 @@ function handleSubmit(event){
     })
     .then(response=>response.json())
     // .then(animal=>console.log(animal))
-    .then(db=>{
-        window.location.href='/'    //relocates user to home screen after data submit pressed
-    })
+    // .then(db=>{
+    //     window.location.href='/'    //relocates user to home screen after data submit pressed
+    // })
     .catch(error=>console.log(error))
     }
     

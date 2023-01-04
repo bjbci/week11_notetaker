@@ -9,7 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "hyperid": "^3.0.1",
+    "nanoid": "^4.0.0",
+    "short-unique-id": "^4.4.4",
+    "shortid": "^2.2.16",
+    "uid": "^2.0.1"
   }
-  
 }
