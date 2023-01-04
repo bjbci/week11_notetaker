@@ -60,8 +60,10 @@ app.post('/api/db',(req,res)=>{
     //newAnimal object with take on all the key value pairs from req.body by using spread operator ...
     const newNote={  
        ...req.body,
-       id: instance(),      //instance()id will be a new key value on new note object
+    //    id: instance(),      //instance()id will be a new key value on new note object
+        id:instance(),
     }
+    console.log(newNote)
     //push this data into an array-THE NEXT TWO LINES WONT MAKE DATA PERSIST:
 // noteData.push(newNote)
 // res.json(newNotel)
@@ -77,7 +79,7 @@ if (err){
 const noteData=JSON.parse(data)
 //PUSH OUR NEW NOTE INTO JSON
 noteData.push(newNote)
-//STRINGIFY ANIMALS ARRAY AND SAVE FILE
+//STRINGIFY db ARRAY AND SAVE FILE
 fs.writeFile(path.join(__dirname, "db.json"), JSON.stringify(noteData),function(err){
     if(err){
         res.status(500).json(err)
@@ -88,34 +90,34 @@ fs.writeFile(path.join(__dirname, "db.json"), JSON.stringify(noteData),function(
 })
 })
 ///////////////////////////////////////////////////////////////
-app.get('/api/db/:animalType',(req,res)=>{
-    const animalType=req.params.animalType
-// console.log(req.params.animalType)
-const pattern=/[a-z]/g
-if (!pattern.test(animalType)){
-    res.status(400).json({error:'not a valid daata type'})
-    return
-}
-//TO DO READ ANIMALS.JSON CONTENTS
-fs.readFile(path.join(__dirname,"db.json"),'utf-8', function(err,data){
+// app.get('/api/db/:animalType',(req,res)=>{
+//     const animalType=req.params.animalType
+// // console.log(req.params.animalType)
+// const pattern=/[a-z]/g
+// if (!pattern.test(animalType)){
+//     res.status(400).json({error:'not a valid daata type'})
+//     return
+// }
+// //TO DO READ ANIMALS.JSON CONTENTS
+// fs.readFile(path.join(__dirname,"db.json"),'utf-8', function(err,data){
     
-    if(err){
-        res.status(500).json(err)
-        return
-    }
-    const noteData=JSON.parse(data)
-    const results=noteData.filter(animal=> animal.type===animalType)
+//     if(err){
+//         res.status(500).json(err)
+//         return
+//     }
+//     const noteData=JSON.parse(data)
+//     const results=noteData.filter(animal=> animal.type===animalType)
     
-    if(results.length===0){
-        res.status(404)
-    }
-    //RES.JSON THE PARSED ARRAY
-res.json(results)
-})
-})
+//     if(results.length===0){
+//         res.status(404)
+//     }
+//     //RES.JSON THE PARSED ARRAY
+// res.json(results)
+// })
+// })
 /////////////////////////////////////////////////////////
 
-app.delete('/api/animals/:id',(req,res)=>{
+app.delete('/api/db/:id',(req,res)=>{
     console.log('delete route hit')
     const id =req.params.id
     
@@ -124,13 +126,13 @@ app.delete('/api/animals/:id',(req,res)=>{
         return
     }
     //the process to actually delete:read the json file,modify the contents,stringify contents and resave the contents
-    fs.readFile(path.join(__dirname,"animals.json"),'utf-8',function(error,data){
+    fs.readFile(path.join(__dirname,"db.json"),'utf-8',function(error,data){
         const noteData=JSON.parse(data)
     console.log(noteData)
     //return an array of all objects EXXCEPT the one you chose which will be deleted with .filter
-    const updatedNoteData=noteData.filter(animal=> id !=animal.id)
+    const updatedNoteData=noteData.filter(note=> id !=note.id)
     console.log(updatedNoteData)
-    fs.writeFile(path.join(__dirname,"animals.json"),JSON.stringify(updatedNoteData),function(error){
+    fs.writeFile(path.join(__dirname,"db.json"),JSON.stringify(updatedNoteData),function(error){
         if(error){
     
         return res.status(500).json(error)
@@ -143,15 +145,15 @@ app.delete('/api/animals/:id',(req,res)=>{
 
 //////////////////////////////////////////////////////////////
 
-// --the : creates a url parameter if you need a dynamic varible 
-app.get('/api/animals/:animalType',(req,res)=>{     
-    //    console.log(req.params)
-    const results=noteData.filter(animal=>animal.type===req.params.animalType)
-     if(results.length===0){
-         return res.status(404).send(`${req.params.animalType} not found`)
-     }
-    res.json(results)
-    })
+// // --the : creates a url parameter if you need a dynamic varible 
+// app.get('/api/animals/:animalType',(req,res)=>{     
+//     //    console.log(req.params)
+//     const results=noteData.filter(animal=>animal.type===req.params.animalType)
+//      if(results.length===0){
+//          return res.status(404).send(`${req.params.animalType} not found`)
+//      }
+//     res.json(results)
+//     })
 //////////////////////////////////////////////////////////////
 app.listen(PORT,()=>{
 
