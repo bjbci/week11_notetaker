@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bootstrap-icons": "^1.10.3",
     "express": "^4.16.4",
     "hyperid": "^3.0.1",
     "nanoid": "^4.0.0",

@@ -90,8 +90,8 @@ fs.writeFile(path.join(__dirname, "db.json"), JSON.stringify(noteData),function(
 })
 })
 ///////////////////////////////////////////////////////////////
-// app.get('/api/db/:animalType',(req,res)=>{
-//     const animalType=req.params.animalType
+// app.get('/api/db/:id',(req,res)=>{
+//     const animalType=req.params.id
 // // console.log(req.params.animalType)
 // const pattern=/[a-z]/g
 // if (!pattern.test(animalType)){

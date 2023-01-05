@@ -182,15 +182,15 @@ console.log("index.js -this is connected")
 
 // getAndRenderNotes();
 ///////////////////////////////////
-const select=document.querySelector('select')
-console.log(select)
-const animalContainer=document.getElementById('animals-container')
+// const select=document.querySelector('select')
+// console.log(select)
+// const animalContainer=document.getElementById('animals-container')
 
-select.addEventListener('change', event =>{
-  const animalType=event.target.value
+// select.addEventListener('change', event =>{
+//   const animalType=event.target.value
 
-  fetch(`/api/db/${animalType}`)
-  .then(response=>response.json())
-  .then(animalData=>console.log(animalData))
-  .catch(err=>console.log('error'))
-})
+//   fetch(`/api/db/${animalType}`)
+//   .then(response=>response.json())
+//   .then(animalData=>console.log(animalData))
+//   .catch(err=>console.log('error'))
+// })
