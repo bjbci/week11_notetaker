@@ -9,7 +9,7 @@ const shortid = require("shortid");
 // import { nanoid } from 'nanoid'  //model.id = nanoid()   nanoid(10)
 // const { resourceLimits } = require('worker_threads')-- what is this-I didnt put it here
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const noteData = require("./db.json"); //pulls in data from database
 
 app.use(express.static("public")); //allows public folder to be unblocked.browser can now request resources from that-public- folder
